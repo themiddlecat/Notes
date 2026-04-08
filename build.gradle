@@ -7,8 +7,10 @@ sonar {
         property "sonar.projectKey", "themiddlecat_Notes"
         property "sonar.organization", "themiddlecat"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.sources", "."
-        property "sonar.token", System.getenv("SONAR_TOKEN") // 👈 就加这一行！
+        // 👇 关键：指定真实的 Java 代码目录，精准扫描
+        property "sonar.sources", "src/net/micode/notes"
+        property "sonar.java.binaries", "."
+        property "sonar.token", System.getenv("SONAR_TOKEN")
     }
 }
 
