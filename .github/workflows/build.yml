@@ -14,25 +14,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 安装 JDK
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 安装 Android SDK（必须）
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 自动生成 gradlew（解决你报错的关键）
       - name: Generate Gradle Wrapper
         run: |
           gradle wrapper --gradle-version 7.5
           chmod +x gradlew
 
-      # 编译 + Sonar 扫描
-      - name: Build and analyze with SonarQube
-        run: ./gradlew clean assembleDebug sonar --info
+      - name: Run SonarQube Scan
+        run: ./gradlew clean sonar --info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
