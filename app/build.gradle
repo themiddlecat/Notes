@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+    id "org.sonarqube"
+}
+
+android {
+    namespace "net.micode.notes"
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "net.micode.notes"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "themiddlecat_Notes"
+        property "sonar.organization", "themiddlecat"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.sources", "src/main/java"
+    }
+}
